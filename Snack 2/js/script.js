@@ -1,24 +1,47 @@
-// Snack 2:
-//  - Il software deve chiedere per 10 volte all’utente di inserire un numero.
-//  - Il programma stampa la somma di tutti i numeri inseriti.
+// Snack 2
+// - Genera un numero casuale tra 1 e 100 e poi chiedi all'utente di indovinare il numero. 
+// - Il programma poi deve far comparire un messaggio "il numero è troppo alto" 
+//   oppure "il numero è troppo basso" nel momento in cui il numero detto dall'utente 
+//   non è perfettamente uguale al numero estratto in modo casuale.
+// - Quando l'utente trova il numero, fateglielo sapere!
 
-// chiedo all'utente di inserire per 10 volte un numero tramite il prompt ed un ciclo for
-const numbers = [];
-let number;
+// Genera un numero casuale tra 1 e 100
+const randomNumber = Math.floor((Math.random() * 100) + 1);
+console.log(randomNumber);
 
-for (let i = 0; i < 10; i++){
-  number = parseInt(prompt('Inserisci un numero'));
-  numbers.push(number);
-}
-// console.log(numbers);
+let attempts = 0;
+let win = false;
 
-// variabile per la somma
-let sumNumbers = 0;
+do {
 
-// ciclo for per sommare gli elementi dell'array
-for (let i = 0; i < numbers.length; i++) {
+    // creo un ciclo do-while per consentire all'utente di indovinare il numero
+    let attemptNumber = parseInt(prompt("Indovina il numero (da 1 a 100):"));
 
-    sumNumbers += numbers[i];
-    // console.log(sumNumbers);
-    document.querySelector("#sum").innerHTML = `${sumNumbers}`;
-}
+    // incremento i tentativi dell'utente
+    attempts++;
+
+    // // controllo che il numero inserito non sia nullo e che sia un numero compreso tra 1 e 100
+    // if(attemptNumber == null || isNaN(attemptNumber || attemptNumber < 1 || attemptNumber > 100 )) {
+
+    // alert("Hai inserito un valore non valido!!");
+    // console.lof(attemptNumber);
+
+    // } else {
+
+      // Controlla se il numero è corretto
+      if (attemptNumber === randomNumber) {
+        console.log("Complimenti! Hai indovinato il numero:", randomNumber);
+
+        win = true;
+    
+      } else if (attemptNumber < randomNumber) {
+        console.log("Il numero è troppo basso.");
+
+      } else {
+        console.log("Il numero è troppo alto.");
+
+      }
+    }
+
+while (!win);    
+

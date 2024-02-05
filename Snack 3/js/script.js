@@ -1,37 +1,52 @@
-// Snack 3:
-// - Crea un array vuoto.
-// - Chiedi per 6 volte all’utente di inserire un numero,
-// - Solo se è dispari inseriscilo nell’array.
-// - Stampa a schermo il contenuto dell'array
+// Snack 3
+// - Crea due array che hanno un numero di elementi diversi. 
+// - Aggiungi elementi all’array che ha meno elementi fino a quando ne avrà tanti quanti l’altro. 
+//   (Se iniziate con un array da 3 elementi e l'altro da 5, 
+//   eseguite istruzioni sinchè non ne hanno entrambi 5)
 
-// chiedo all'utente di inserire per 6 volte un numero tramite il prompt ed un ciclo for
-const numbers = [];
-let number;
 
-for (let i = 0; i < 6; i++){
-  number = parseInt(prompt('Inserisci un numero'));
+// // creiamo 2 array che abbiano un numero diverso di elementi
+let array1 = [10, 35, 49];
+let array2 = [48, 59, 36, 87, 18, 54, 12, 89];
 
-  // se il numero non sarà divisibile per 2 sarà dispari  
-  if (number % 2 != 0){
+// Chiedi all'utente di inserire i numeri per il primo array finchè non raggiunge lo stesso numero di elemnti del secondo
+do {
+    let numbers = parseInt(prompt("Inserisci un numero per il primo array:"));
+    
+    array1.push(numbers);
+   // finchè array1 è minore di array2 chiederà all'utente di inserire numeri
 
-    // se il numero è dispari, inseriscilo nell'array
-    numbers.push(number)
-  }
-} 
-// console.log(numbers);
+} while (array1.length < array2.length);
 
-// creo la variabile per stampare in pagina il risultato
-const numberShots = document.querySelector("#shots")
+console.log("Array 1:", array1);
+console.log("Array 2:", array2);
 
-for (let i = 0; i < numbers.length; i++){
+// creo la variabile per stampare in pagina l'array1
+const numberInserted = document.querySelector("#array1")
+
+for (let i = 0; i < array1.length; i++){
 
     // creo un nuovo elemento li
     const newElement = document.createElement("li");
 
     // scrivo il numero preso dall'array di numeri dispari
-    newElement.innerText = numbers[i];
+    newElement.innerText = array1[i];
     
     // lo appendo alla lista in pagina
-    numberShots.append(newElement);
+    numberInserted.append(newElement);
 }
 
+// creo la variabile per stampare in pagina l'array2
+const numberArray2 = document.querySelector("#array2")
+
+for (let i = 0; i < array2.length; i++){
+
+    // creo un nuovo elemento li
+    const newElement = document.createElement("li");
+
+    // scrivo il numero preso dall'array di numeri dispari
+    newElement.innerText = array2[i];
+    
+    // lo appendo alla lista in pagina
+    numberArray2.append(newElement);
+}
