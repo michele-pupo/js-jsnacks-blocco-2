@@ -5,43 +5,46 @@
 //   non è perfettamente uguale al numero estratto in modo casuale.
 // - Quando l'utente trova il numero, fateglielo sapere!
 
-// Genera un numero casuale tra 1 e 100
-const randomNumber = Math.floor((Math.random() * 100) + 1);
-console.log(randomNumber);
 
-let attempts = 0;
-let win = false;
+const secretNumberEl = document.getElementById("esito");
 
-do {
 
-    // creo un ciclo do-while per consentire all'utente di indovinare il numero
-    let attemptNumber = parseInt(prompt("Indovina il numero (da 1 a 100):"));
-
-    // incremento i tentativi dell'utente
-    attempts++;
-
-    // // controllo che il numero inserito non sia nullo e che sia un numero compreso tra 1 e 100
-    // if(attemptNumber == null || isNaN(attemptNumber || attemptNumber < 1 || attemptNumber > 100 )) {
-
-    // alert("Hai inserito un valore non valido!!");
-    // console.lof(attemptNumber);
-
-    // } else {
-
-      // Controlla se il numero è corretto
-      if (attemptNumber === randomNumber) {
-        console.log("Complimenti! Hai indovinato il numero:", randomNumber);
-
-        win = true;
+    document.querySelector("#start").addEventListener("click", function() {
     
-      } else if (attemptNumber < randomNumber) {
-        console.log("Il numero è troppo basso.");
-
-      } else {
-        console.log("Il numero è troppo alto.");
-
-      }
-    }
-
-while (!win);    
-
+            
+        // numero casuale da 1 a 100 inclusi
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+    
+        // scrivo in pagina
+        secretNumberEl.innerText = randomNumber;
+    
+    
+        // dichiariamo una variabile per il numero scelto dall'utente
+        let userNumber;
+    
+        // inizializziamo il contatore dei tentativi
+        let count = 0;
+    
+        do {
+    
+            userNumber = Number(prompt("Indovina il numero"));
+    
+            if(userNumber > randomNumber) {
+                
+                alert("Troppo alto");
+    
+            } else if (userNumber < randomNumber) {
+    
+                alert ("Troppo basso");
+    
+            }
+    
+            count++;
+    
+        } while (userNumber !== randomNumber);
+    
+        // l'utente ha indovinato
+        console.log("Bravo hai vinto! Il numero era " + randomNumber + ". Hai fatto " + count + " tentativi.");
+        secretNumberEl.classList.add("finish");
+    
+    });

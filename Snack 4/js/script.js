@@ -1,24 +1,40 @@
-// Snack 4:
-//  - Chiedi un numero di 4 cifre all’utente
-//  - e calcola la somma di tutte le cifre che compongono il numero.
+// Snack 3
+// - Inserisci un numero,
+// -  se è pari stampa il numero, 
+// -  se è dispari stampa il numero successivo.
 
-// chiediamo all'utente di inserire un numero di 4 cifre
-const number = prompt("Scrivi un numero di 4 cifre");
 
-// convertiamo il numero in una stringa
-let numberStringa = number.toString();
+let userChoice = prompt("Scegli un numero, oppure digita 'exit'");
 
-// console.log(numberStringa);
 
-let sumNumbers = 0;
+console.log("user choice", userChoice);
 
-// prendiamo ogni cifra delle stringa e la sommiamo
-for (let i = 0; i < numberStringa.length; i++){
 
-    // sommiamo ogni cifra
-    sumNumbers += parseInt(numberStringa[i]);
-    // console.log(sumNumbers);
+// sinchè la userChoice è diversa da "exit"
 
-    // stampiamo la somma ottenuta in pagina
-    document.querySelector("#sum").innerHTML = `${sumNumbers}`;
+while (userChoice != "exit") {
+
+    //solo se il testo inserito è un numero
+    if ( ! isNaN(userChoice)) { 
+
+        // convertiamo in numero la scelta dell'utente
+        const userNumber = Number(userChoice)
+
+        // facciamo il controllo
+        if (userNumber % 2 == 0) { // pari
+
+            console.log(userNumber);
+        
+        } else { // dispari
+        
+            console.log(userNumber + 1);
+        }
+
+    } else {
+        alert("Inserisci un numero");
+    }
+
+    userChoice = prompt("Scegli un altro numero, o digita 'exit'")
 }
+
+console.log("uscita")
